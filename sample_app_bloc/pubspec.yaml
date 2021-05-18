@@ -1,5 +1,4 @@
-name: sample_loyalty_app
-description: A new Flutter project.
+name: sample_app_bloc
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -23,18 +22,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  sample_app_core:
-    path: ../sample_app_core
   sample_app_repository:
     path: ../sample_app_repository
-  sample_app_bloc:
-    path: ../sample_app_bloc
-  flutter_spinkit: "^4.1.2"
-  flutter_offline: "^2.0.0"
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.3
+  flutter_bloc: ^7.0.0
 
 dev_dependencies:
   flutter_test:
