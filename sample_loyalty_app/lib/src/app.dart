@@ -27,6 +27,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => DetailArticle());
         break;
     }
+    return MaterialPageRoute(builder: (_) => Container());
   }
 }
 
