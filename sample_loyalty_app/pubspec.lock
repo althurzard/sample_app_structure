@@ -296,6 +296,13 @@ packages:
       relative: true
     source: path
     version: "1.0.0+1"
+  sample_native_bridge:
+    dependency: transitive
+    description:
+      path: "../sample_native_bridge"
+      relative: true
+    source: path
+    version: "1.0.0+1"
   sky_engine:
     dependency: transitive
     description: flutter

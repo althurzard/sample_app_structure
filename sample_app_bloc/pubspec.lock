@@ -50,6 +50,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.15.0"
+  cupertino_icons:
+    dependency: transitive
+    description:
+      name: cupertino_icons
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.3"
   dio:
     dependency: transitive
     description:
@@ -225,6 +232,13 @@ packages:
     dependency: "direct main"
     description:
       path: "../sample_app_repository"
+      relative: true
+    source: path
+    version: "1.0.0+1"
+  sample_native_bridge:
+    dependency: "direct main"
+    description:
+      path: "../sample_native_bridge"
       relative: true
     source: path
     version: "1.0.0+1"

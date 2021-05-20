@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:sample_app_bloc/sample_app_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sample_app_repository/sample_app_repository.dart';
 import 'package:sample_loyalty_app/src/app.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:flutter/material.dart';
 
 void main() {
   Bloc.observer = AppBlocObserver();
@@ -11,6 +11,9 @@ void main() {
   runApp(MultiBlocProvider(providers: [
     BlocProvider<NewsBloc>(
         create: (context) => NewsBloc(newsRepository: NewsClient())),
+    BlocProvider<ProfileBloc>(
+      create: (context) => ProfileBloc(),
+    )
   ], child: MyApp()));
 }
 
