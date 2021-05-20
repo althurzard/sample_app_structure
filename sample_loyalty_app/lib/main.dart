@@ -13,6 +13,9 @@ void main() {
         create: (context) => NewsBloc(newsRepository: NewsClient())),
     BlocProvider<ProfileBloc>(
       create: (context) => ProfileBloc(),
+    ),
+    BlocProvider<NativeBloc>(
+      create: (context) => NativeBloc(),
     )
   ], child: MyApp()));
 }

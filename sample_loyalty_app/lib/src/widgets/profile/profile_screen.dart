@@ -10,19 +10,15 @@ class Profile extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ProfileBloc, ProfileState>(
       builder: (context, state) {
-        var text = '';
-        if (state is ProfileLoaded) {
-          text = state.batteryLife;
-        }
         return Container(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(text),
+              _batteryTextWiget(context),
               TextButton(
                   onPressed: () =>
-                      context.read<ProfileBloc>().add(GetBatteryLife()),
+                      context.read<NativeBloc>().add(GetBatteryLife()),
                   child: Container(
                     color: AppColors.kBlueColor,
                     child: Padding(
@@ -32,10 +28,57 @@ class Profile extends StatelessWidget {
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
+                  )),
+              _nativeTextInputWidget(context),
+              TextButton(
+                  onPressed: () =>
+                      context.read<NativeBloc>().add(GetNativeTextInput()),
+                  child: Container(
+                    color: AppColors.kBlueColor,
+                    child: Padding(
+                      padding: EdgeInsets.all(5),
+                      child: Text(
+                        'Open Native Text Input',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
                   ))
             ],
           ),
         );
+      },
+    );
+  }
+
+  Widget _batteryTextWiget(context) {
+    return BlocBuilder<NativeBloc, NativeState>(
+      buildWhen: (current, next) {
+        return (current is BatteryLoaded && next is BatteryLoaded) ||
+            (current.runtimeType != BatteryLoaded && next is BatteryLoaded);
+      },
+      builder: (context, state) {
+        var text = '';
+        if (state is BatteryLoaded) {
+          text = state.batteryLife;
+        }
+        return Text(text);
+      },
+    );
+  }
+
+  Widget _nativeTextInputWidget(context) {
+    return BlocBuilder<NativeBloc, NativeState>(
+      buildWhen: (current, next) {
+        return (current is NativeTextLoaded && next is NativeTextLoaded) ||
+            (current.runtimeType != NativeTextLoaded &&
+                next is NativeTextLoaded);
+      },
+      builder: (context, state) {
+        var text = '';
+        if (state is NativeTextLoaded) {
+          text = state.textInput;
+        }
+        return Text(text);
       },
     );
   }

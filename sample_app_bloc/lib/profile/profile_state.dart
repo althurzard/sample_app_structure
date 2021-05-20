@@ -11,9 +11,3 @@ class ProfileError extends ProfileState {
   final String message;
   ProfileError({@required this.message});
 }
-
-class ProfileLoaded extends ProfileState {
-  final String batteryLife;
-
-  ProfileLoaded({@required this.batteryLife});
-}
