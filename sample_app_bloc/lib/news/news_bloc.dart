@@ -22,9 +22,8 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
 
   Stream<NewsState> _fetchNews(FetchNews params) async* {
     try {
-      final hotNews = await newsRepository.fetchHotNews();
       final localNews = await newsRepository.fetchLocalNews();
-      yield NewsLoaded(hotNews: hotNews, localNews: localNews);
+      yield NewsLoaded(hotNews: [], localNews: localNews);
     } on DioError catch (e, stack) {
       yield NewsError(message: e.message);
     }

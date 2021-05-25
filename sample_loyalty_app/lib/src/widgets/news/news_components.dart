@@ -3,9 +3,7 @@ import 'package:sample_app_bloc/sample_app_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sample_app_core/sample_app_core.dart';
 import 'package:sample_loyalty_app/src/widgets/components/empty_screen.dart';
-import 'package:sample_loyalty_app/src/widgets/components/hot_card.dart';
 import 'package:sample_loyalty_app/src/widgets/components/loading_indicator.dart';
-import 'package:sample_loyalty_app/src/widgets/components/see_more.dart';
 import 'package:sample_loyalty_app/src/widgets/components/small_card.dart';
 
 class NewsComponentWiget extends StatelessWidget {
@@ -29,37 +27,9 @@ class NewsComponentWiget extends StatelessWidget {
         }
 
         if (state is NewsLoaded) {
-          var width = MediaQuery.of(context).size.width * 0.7;
-          var height = width * 6 / 4;
-          var hotNews = state.hotNews.take(5).toList();
           var localNews = state.localNews;
           return Column(
             children: <Widget>[
-              Container(
-                height: height,
-                child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: hotNews.length + 1,
-                    itemBuilder: (BuildContext context, int index) =>
-                        index < hotNews.length
-                            ? Padding(
-                                padding: EdgeInsets.only(
-                                    right: AppStyles.kMargin / 2,
-                                    left: AppStyles.kMargin),
-                                child: GestureDetector(
-                                  child: HotCard(
-                                    item: hotNews[index],
-                                    width: width,
-                                    height: height,
-                                  ),
-                                  onTap: this.onPressItem,
-                                ),
-                              )
-                            : SeeMore(
-                                width: width,
-                                height: height,
-                              )),
-              ),
               ...localNews
                   .asMap()
                   .map((index, item) => MapEntry(
@@ -67,10 +37,10 @@ class NewsComponentWiget extends StatelessWidget {
                       Padding(
                           padding: AppStyles.kMarginAll,
                           child: GestureDetector(
+                            onTap: onPressItem,
                             child: SmallCard(
                               item: item,
                             ),
-                            onTap: this.onPressItem,
                           ))))
                   .values
                   .toList()
