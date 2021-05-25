@@ -11,16 +11,17 @@ class NewsScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: AppColors.kScaffoldBackground,
         body: OfflineBuilder(
-            child: Container(),
-            connectivityBuilder: (
-              context,
-              connectivity,
-              child,
-            ) {
-              return connectivity == ConnectivityResult.none
-                  ? _buildNoConnectionMessage(context)
-                  : _buildContent(context);
-            }));
+          connectivityBuilder: (
+            context,
+            connectivity,
+            child,
+          ) {
+            return connectivity == ConnectivityResult.none
+                ? _buildNoConnectionMessage(context)
+                : _buildContent(context);
+          },
+          child: Container(),
+        ));
   }
 
   Widget _buildNoConnectionMessage(context) {
@@ -34,6 +35,10 @@ class NewsScreen extends StatelessWidget {
 
   Widget _buildContent(context) {
     return RefreshIndicator(
+      onRefresh: () async {
+        // Reload markets section.
+        context.read<NewsBloc>().add(FetchNews());
+      },
       child: SafeArea(
           child: ListView(
               physics: BouncingScrollPhysics(),
@@ -44,10 +49,6 @@ class NewsScreen extends StatelessWidget {
                   Navigator.pushNamed(context, AppRoutes.detailArticle),
             )
           ])),
-      onRefresh: () async {
-        // Reload markets section.
-        context.read<NewsBloc>().add(FetchNews());
-      },
     );
   }
 }

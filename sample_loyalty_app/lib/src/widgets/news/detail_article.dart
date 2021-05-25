@@ -8,7 +8,7 @@ class DetailArticle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Test"),
+        title: Text('Test'),
       ),
       body: Container(
         color: AppColors.kScaffoldBackground,
