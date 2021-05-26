@@ -1,7 +1,8 @@
+import 'package:go_networking_service/go_networking_service.dart';
 import 'package:meta/meta.dart';
 import 'package:intl/intl.dart';
 
-class NewsEnity {
+class NewsEnity implements BaseModelInterface {
   final String title;
   final String id;
   final String description;
@@ -11,7 +12,7 @@ class NewsEnity {
 
   String formattedPublished(String languageCode) {
     var date = DateTime.fromMillisecondsSinceEpoch(published);
-    String formattedDate = DateFormat.yMMMMd(languageCode).format(date);
+    var formattedDate = DateFormat.yMMMMd(languageCode).format(date);
     return formattedDate;
   }
 
@@ -38,5 +39,11 @@ class NewsEnity {
         medias:
             (json['medias'] as List).map((e) => e.toString()).toList() ?? [],
         published: json['published']);
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    // TODO: implement toJson
+    throw UnimplementedError();
   }
 }

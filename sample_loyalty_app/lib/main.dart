@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:sample_app_bloc/sample_app_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sample_app_repository/sample_app_repository.dart';
+import 'package:sample_loyalty_app/app_injector.dart';
 import 'package:sample_loyalty_app/src/app.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
-void main() {
+AppInjector appInjector;
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  appInjector = await AppInjector.create();
   Bloc.observer = AppBlocObserver();
-  initializeDateFormatting();
+  await initializeDateFormatting();
   runApp(MultiBlocProvider(providers: [
-    BlocProvider<NewsBloc>(
-        create: (context) => NewsBloc(newsRepository: NewsClient())),
+    BlocProvider<NewsBloc>(create: (context) {
+      var client = GetIt.instance.get<NewsClient>();
+      return NewsBloc(
+          newsRepository: client,
+          storageTokenProcessor: client.storageTokenProcessor);
+    }),
   ], child: MyApp()));
 }
 

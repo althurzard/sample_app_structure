@@ -1,4 +1,4 @@
-name: sample_app_repository
+name: go_networking_service
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -23,11 +23,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  sample_app_core:
-    path: ../sample_app_core
-  go_networking_service:
-    path: ../go_networking_service
-  intl: "^0.17.0"
+  flutter_secure_storage: ^4.2.0
+  dio: ^4.0.0
+
 
 dev_dependencies:
   flutter_test:

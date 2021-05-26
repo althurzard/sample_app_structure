@@ -1,16 +1,17 @@
-import 'package:sample_app_core/sample_app_core.dart';
+import 'package:flutter/material.dart';
+import 'package:go_networking_service/go_networking_service.dart';
 import 'package:sample_app_repository/src/repositories/news_repository.dart';
+import 'package:dio/dio.dart';
 import '../enities/news_enity.dart';
-import '../network_base.dart';
 
-enum _URLPath { Hot, Local }
+enum _Path { Hot, Local }
 
 class _URLPathHelper {
-  static String value(_URLPath value) {
+  static String value(_Path value) {
     switch (value) {
-      case _URLPath.Hot:
+      case _Path.Hot:
         return '/application/news/hot';
-      case _URLPath.Local:
+      case _Path.Local:
         return '/application/news/local';
       default:
         return '';
@@ -18,22 +19,28 @@ class _URLPathHelper {
   }
 }
 
-class NewsClient extends FetchClient implements NewsRepository {
-  Future<List<NewsEnity>> fetchHotNews() async {
-    final Uri newsUri =
-        Uri.http(Configs.appDomain, _URLPathHelper.value(_URLPath.Hot));
-    final newsResponse = await super.fetchData(uri: newsUri);
-    return (newsResponse.data['data'] as List)
+class NewsClient extends APIProvider implements NewsRepository {
+  @override
+  Future<ResponseListData<NewsEnity>> fetchHotNews() async {
+    var input = DefaultInputService(path: _URLPathHelper.value(_Path.Local));
+    final response = await super.request(input: input);
+    var data = (response.data['data'] as List)
         .map((e) => NewsEnity.fromJson(e))
         .toList();
+    return ResponseListData<NewsEnity>(() => data);
   }
 
-  Future<List<NewsEnity>> fetchLocalNews() async {
-    final Uri newsUri =
-        Uri.http(Configs.appDomain, _URLPathHelper.value(_URLPath.Local));
-    final newsResponse = await super.fetchData(uri: newsUri);
-    return (newsResponse.data['data'] as List)
-        .map((e) => NewsEnity.fromJson(e))
-        .toList();
+  @override
+  Future<ResponseListData<NewsEnity>> fetchLocalNews() {
+    return Future.error(AppError(message: ''));
   }
+
+  NewsClient(
+      {@required StorageTokenProcessor storageTokenProcessor,
+      @required NetworkConfigurable networkConfigurable,
+      Interceptor interceptor})
+      : super(
+            storageTokenProcessor: storageTokenProcessor,
+            networkConfiguration: networkConfigurable,
+            interceptor: interceptor);
 }

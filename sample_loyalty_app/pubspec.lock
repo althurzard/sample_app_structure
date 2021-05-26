@@ -91,7 +91,7 @@ packages:
       name: dio
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.10"
+    version: "4.0.0"
   fake_async:
     dependency: transitive
     description:
@@ -132,6 +132,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  flutter_secure_storage:
+    dependency: transitive
+    description:
+      name: flutter_secure_storage
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.2.0"
   flutter_spinkit:
     dependency: "direct main"
     description:
@@ -149,20 +156,27 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  http:
-    dependency: transitive
+  get_it:
+    dependency: "direct main"
     description:
-      name: http
+      name: get_it
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.2"
+    version: "7.1.3"
+  go_networking_service:
+    dependency: "direct main"
+    description:
+      path: "../go_networking_service"
+      relative: true
+    source: path
+    version: "1.0.0+1"
   http_parser:
     dependency: transitive
     description:
       name: http_parser
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.4"
+    version: "4.0.0"
   intl:
     dependency: transitive
     description:

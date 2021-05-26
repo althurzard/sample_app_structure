@@ -25,6 +25,8 @@ dependencies:
   sample_app_repository:
     path: ../sample_app_repository
   flutter_bloc: ^7.0.0
+  go_networking_service:
+    path: ../go_networking_service
 
 dev_dependencies:
   flutter_test:
