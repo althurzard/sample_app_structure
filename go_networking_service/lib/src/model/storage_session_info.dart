@@ -3,7 +3,7 @@ import 'auth_session_info.dart';
 
 class StorageSessionInfo implements JSONable {
   int appType;
-  AuthSessionInfo sessionInfo;
+  AuthSessionInterface sessionInfo;
   StorageSessionInfo({@required this.appType, @required this.sessionInfo});
 
   @override

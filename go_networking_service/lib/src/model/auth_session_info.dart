@@ -4,9 +4,14 @@ abstract class JSONable {
   Map<String, dynamic> toJson();
 }
 
-class AuthSessionInfo implements JSONable {
-  var accessToken;
-  var phoneNumber;
+abstract class AuthSessionInterface implements JSONable {
+  String accessToken;
+  String phoneNumber;
+}
+
+class AuthSessionInfo implements AuthSessionInterface {
+  String accessToken;
+  String phoneNumber;
   AuthSessionInfo({@required this.accessToken, @required this.phoneNumber});
 
   factory AuthSessionInfo.fromJson(Map<String, dynamic> json) {

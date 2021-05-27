@@ -4,11 +4,11 @@ import 'model/storage_session_info.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 abstract class StorageTokenProcessor {
-  void save({AuthSessionInfo sessionInfo, int appType});
+  void save({AuthSessionInterface sessionInfo, int appType});
   void removeSessionInfo({int appType});
   void removeAllSessionInfos();
   String getCurrentToken({int appType});
-  AuthSessionInfo getCurrentSessionInfo({int appType});
+  AuthSessionInterface getCurrentSessionInfo({int appType});
 }
 
 class DefaultStorageTokenProcessor implements StorageTokenProcessor {
@@ -58,7 +58,7 @@ class DefaultStorageTokenProcessor implements StorageTokenProcessor {
   }
 
   @override
-  void save({AuthSessionInfo sessionInfo, int appType = 0}) {
+  void save({AuthSessionInterface sessionInfo, int appType = 0}) {
     var existSession = _sessionInfos.firstWhere(
         (element) => element.appType == appType,
         orElse: () => null);
@@ -74,7 +74,7 @@ class DefaultStorageTokenProcessor implements StorageTokenProcessor {
   }
 
   @override
-  AuthSessionInfo getCurrentSessionInfo({int appType = 0}) {
+  AuthSessionInterface getCurrentSessionInfo({int appType = 0}) {
     var first = _sessionInfos.firstWhere(
         (element) => element.appType == appType,
         orElse: () => null);
