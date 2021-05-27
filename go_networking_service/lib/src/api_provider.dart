@@ -43,13 +43,12 @@ class APIProvider {
   }
 
   void _onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    // TODO: handle refresh token
-    print(options.uri);
-    print(options.headers);
+    // TODO: handle something(token, headers, etc)
     return handler.next(options);
   }
 
   void _onError(DioError err, ErrorInterceptorHandler handler) {
+    // TODO: handle refresh token
     return handler.next(err);
   }
 

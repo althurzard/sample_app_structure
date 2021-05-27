@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_networking_service/go_networking_service.dart';
 import 'package:sample_app_repository/src/repositories/news_repository.dart';
@@ -24,10 +25,10 @@ class NewsClient extends APIProvider implements NewsRepository {
   Future<ResponseListData<NewsEnity>> fetchHotNews() async {
     var input = DefaultInputService(path: _URLPathHelper.value(_Path.Local));
     final response = await super.request(input: input);
-    var data = (response.data['data'] as List)
+    var result = (response.data['data'] as List)
         .map((e) => NewsEnity.fromJson(e))
         .toList();
-    return ResponseListData<NewsEnity>(() => data);
+    return ResponseListData<NewsEnity>(() => result);
   }
 
   @override

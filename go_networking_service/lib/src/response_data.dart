@@ -11,14 +11,6 @@ abstract class PagingInterface extends JSONable {
   int pageSize;
 }
 
-class ResponseData<T extends BaseModelInterface> {
-  ItemCreator<T> creator;
-  ResponseData(this.creator);
-  T get data {
-    return creator();
-  }
-}
-
 class ResponseListData<T extends BaseModelInterface> {
   ItemsCreator creators;
   PagingInterface paging;
