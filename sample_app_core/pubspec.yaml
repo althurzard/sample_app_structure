@@ -19,6 +19,7 @@ dependencies:
   flutter:
     sdk: flutter
   path_provider:
+  pedantic: ^1.11.0
 
 dev_dependencies:
   intl_translation:

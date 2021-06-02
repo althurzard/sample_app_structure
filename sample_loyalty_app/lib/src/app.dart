@@ -39,6 +39,7 @@ class TabbarController extends StatelessWidget {
         length: 2,
         child: Scaffold(
           appBar: PreferredSize(
+            preferredSize: Size.fromHeight(50),
             child: AppBar(
               bottom: TabBar(
                 tabs: [
@@ -47,7 +48,6 @@ class TabbarController extends StatelessWidget {
                 ],
               ),
             ),
-            preferredSize: Size.fromHeight(50),
           ),
           body: TabBarView(
             children: [

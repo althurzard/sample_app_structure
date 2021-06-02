@@ -11,7 +11,7 @@ class SmallCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Locale myLocale = Localizations.localeOf(context);
+    var myLocale = Localizations.localeOf(context);
     return Container(
       height: 80,
       child: Row(
@@ -35,6 +35,7 @@ class SmallCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Expanded(
+                      flex: 1,
                       child: Text(
                         item.title,
                         maxLines: 3,
@@ -43,7 +44,6 @@ class SmallCard extends StatelessWidget {
                             color: Colors.black,
                             fontWeight: FontWeight.bold),
                       ),
-                      flex: 1,
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: AppStyles.kMargin / 2),

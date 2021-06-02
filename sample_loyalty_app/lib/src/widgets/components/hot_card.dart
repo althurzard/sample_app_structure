@@ -15,7 +15,7 @@ class HotCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Locale myLocale = Localizations.localeOf(context);
+    var myLocale = Localizations.localeOf(context);
     return Container(
       width: width,
       height: height,

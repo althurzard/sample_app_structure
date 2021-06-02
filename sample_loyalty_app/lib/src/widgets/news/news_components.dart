@@ -37,10 +37,10 @@ class NewsComponentWiget extends StatelessWidget {
                       Padding(
                           padding: AppStyles.kMarginAll,
                           child: GestureDetector(
+                            onTap: onPressItem,
                             child: SmallCard(
                               item: item,
                             ),
-                            onTap: this.onPressItem,
                           ))))
                   .values
                   .toList()
